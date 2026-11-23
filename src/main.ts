@@ -2,4 +2,9 @@ import { createApp } from 'vue'
 import './style.css'
 import App from './App.vue'
 
+console.log("running!")
+
 createApp(App).mount('#app')
+
+
+  
