@@ -1,0 +1,11 @@
+﻿student,grade,courseName,course,sectionNumber,expression,term,room,teacher
+F,9,French I,6011,2,1(A-F),YR,406,"Rectenwald, Theodore"
+,9,Honors Biology,5012,2,2(A-F),YR,Z206,"Krotec, Mark"
+,9,Religion I,4011,4,3(A-F),YR,410,"Weisel, Aaron"
+,9,Lunch 9th,1,1,4(A-F),YR,CAFE,"Staff, Lunch"
+,9,Honors Introduction to Programming,3072,1,"5(A,C,E)",YR,306,"Maltbaek, Thomas | Sweeney, Andrew"
+,9,Freshman Choir,9011,3,"5(B,D,F)",YR,PAC,"Gatta, Sean"
+,9,Honors Citizenship in a Global Context,2012,1,6(A-F),YR,BRC 4,"Allen, John"
+,9,Honors Algebra II,3022,4,7(A-F),YR,Z202,"Kelley, Erika"
+,9,Honors English I,1012,1,8(A-F),YR,301,"Retenauer, Kurt"
+,9,Homeroom,1000,17,FlX(A-F),YR,402,"Erlandson, Anthony"

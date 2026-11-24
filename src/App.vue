@@ -1,8 +1,8 @@
 
   <script setup lang="ts">
   // import HelloWorld from './components/HelloWorld.vue'
-  import { Schedule } from "./builder/algorithm.ts";
-  import {main} from "./builder/app.ts"
+  import { Schedule, type Student, type Teacher} from "./builder/algorithm.ts";
+  import {analyze, parse} from "./builder/app.ts"
   
   import {handleError, ref} from "vue"
 
@@ -12,15 +12,26 @@
 
   const schedule = ref<Schedule>(Schedule.blank())
 
-  const fitness = ref<number>(schedule.value.fitness)
+  const students = ref<Student[]>([])
+  const teachers = ref<Teacher[]>([])
+
 
   function runAlgorithm(){
-    if (!csvContent.value)
+    if (!csvContent.value){
+      console.error("Attempted to run algorithm on no data")
       return
+    }
+    if (students.value.length === 0){
+      console.error("Attempted to run algorithm on no students")
+      return
+    }
+    if (teachers.value.length === 0){
+      console.error("Attempted to run algorithm on no teachers")
+      return
+    }
     try {
       
-      schedule.value = main(csvContent.value);
-      fitness.value = schedule.value.fitness
+      schedule.value = analyze(students.value, teachers.value);
     } catch (error) {
       console.error("Error computing algorithm:", error)
     }
@@ -36,8 +47,12 @@ async function handleFileUpload(event: Event) {
   try {
     csvContent.value = await file.text()
 
+
     //schedule = main(csvContent)
     console.log("CSV file read successfully:", schedule)
+    let tmep = parse(csvContent.value)
+    students.value = tmep[0]
+    teachers.value = tmep[1] || []
   } catch (error) {
     console.error("Error reading or processing CSV file:", error)
   }
@@ -60,7 +75,8 @@ async function handleFileUpload(event: Event) {
 <div>
   <label>.csv file goes here:</label>
   <input type="file" @change="(e) => handleFileUpload(e)" accept=".csv" placeholder="input file here" class="input"/>
-  <p>fitness score: {{fitness}}</p>
+  <p>fitness score: {{schedule.fitness}}</p>
+  <p>num students: {{students.length}}</p>
 </div>
 
 <div>
